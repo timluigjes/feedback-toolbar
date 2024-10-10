@@ -1,0 +1,70 @@
+.toolbar {
+  padding: 20px 30px;
+  background-color: #0a0a0a;
+  border-radius: 30px;
+  display: inline-flex;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 15px;
+}
+
+button {
+  appearance: none;
+  border: none;
+  background-color: #474747;
+  border-radius: 30px;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 15px;
+  cursor: pointer;
+
+  span {
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
+
+.ft-element-select {
+  background-color: azure !important;
+  cursor: pointer !important;
+}
+
+.ft-element-selected {
+  background-color: red;
+  cursor: pointer !important;
+}
+
+.comment-container {
+  position: absolute;
+  display: flex;
+}
+
+.comment-button {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: #474747;
+  border: 1px solid #474747;
+  transform: translate(-50%, -50%);
+  /* flex: 0 0 auto; */
+  align-self: baseline;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: #474747;
+  border: 1px solid #474747;
+  gap: 5px;
+
+  .comment {
+    background-color: white;
+    border-bottom: 1px solid #474747;
+  }
+}
