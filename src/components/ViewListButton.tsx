@@ -1,7 +1,7 @@
-import { faList } from "@fortawesome/free-solid-svg-icons"
+import {faList} from "@fortawesome/free-solid-svg-icons"
 import ActionButton from "./ActionButton"
 
-function ViewListButton () {
+function ViewListButton() {
     return (
         <ActionButton
             title="View list"

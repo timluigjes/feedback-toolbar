@@ -1,6 +1,6 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Tooltip } from "react-tooltip"
+import {IconProp} from "@fortawesome/fontawesome-svg-core"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {Tooltip} from "react-tooltip"
 
 interface ActionButtonProps {
     title: string
@@ -9,7 +9,6 @@ interface ActionButtonProps {
     func?: () => void
     faIcon?: IconProp
 }
-
 
 
 /**
@@ -22,7 +21,7 @@ interface ActionButtonProps {
  * @param faIcon The fontawesome icon to display.
  * @returns A button with a tooltip.
  */
-function ActionButton({ title, tooltipId, tooltip, func, faIcon }: ActionButtonProps) {
+function ActionButton({title, tooltipId, tooltip, func, faIcon}: ActionButtonProps) {
     return (
         <>
             <button
@@ -31,10 +30,10 @@ function ActionButton({ title, tooltipId, tooltip, func, faIcon }: ActionButtonP
                 data-tooltip-place="top"
                 onClick={func}
             >
-                {faIcon && <FontAwesomeIcon icon={faIcon} />}
+                {faIcon && <FontAwesomeIcon icon={faIcon}/>}
                 <span>{title}</span>
             </button>
-            <Tooltip id={tooltipId} />
+            <Tooltip id={tooltipId}/>
         </>
     )
 }

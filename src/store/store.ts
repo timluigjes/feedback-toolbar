@@ -1,11 +1,11 @@
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {configureStore, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import CommentListItemProps from "../interfaces/CommentListItemProps";
 
 const commentsSlice = createSlice({
     name: "comments",
     initialState: [],
     reducers: {
-        addComment: (state: CommentListItemProps[], action:PayloadAction<CommentListItemProps>) => {
+        addComment: (state: CommentListItemProps[], action: PayloadAction<CommentListItemProps>) => {
             state.push(action.payload);
         },
         removeComment: (state: CommentListItemProps[], action: PayloadAction<CommentListItemProps>) => {
@@ -17,13 +17,13 @@ const commentsSlice = createSlice({
     },
 });
 
-export const { addComment, removeComment } = commentsSlice.actions;
+export const {addComment, removeComment} = commentsSlice.actions;
 
 const listItems = createSlice({
     name: "listItems",
     initialState: [],
     reducers: {
-        addListItem: (state: CommentListItemProps[], action:PayloadAction<CommentListItemProps>) => {
+        addListItem: (state: CommentListItemProps[], action: PayloadAction<CommentListItemProps>) => {
             state.push(action.payload);
         },
         removeListItem: (state: CommentListItemProps[], action: PayloadAction<CommentListItemProps>) => {
@@ -35,8 +35,7 @@ const listItems = createSlice({
     },
 });
 
-export const { addListItem, removeListItem } = listItems.actions;
-
+export const {addListItem, removeListItem} = listItems.actions;
 
 
 export const commentsStore = configureStore({

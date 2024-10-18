@@ -1,6 +1,5 @@
 import CommentListItemProps from "../interfaces/CommentListItemProps"
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import {useEffect, useState} from "react";
 import Markdown from "react-markdown";
 
 interface CommentButtonProps {
@@ -10,19 +9,23 @@ interface CommentButtonProps {
 interface commentListItem {
     user: string,
     comment: string,
-    id: number
+    id: string
 }
 
-function CommentList({ comment }: CommentButtonProps) {
+function CommentList({comment}: CommentButtonProps) {
     const [commentList, setCommentList] = useState<commentListItem[]>([]);
+    const crypto = new Crypto();
 
     useEffect(() => {
         if (comment && comment.user && comment.comment) {
-            setCommentList(commentList => [...commentList, { user: comment.user!, comment: comment.comment!, id: uuidv4() }]);
+            setCommentList(commentList => [...commentList, {
+                user: comment.user!,
+                comment: comment.comment!,
+                id: crypto.randomUUID()
+            }]);
         }
 
     }, [])
-
 
 
     return (

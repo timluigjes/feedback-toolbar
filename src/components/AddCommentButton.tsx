@@ -1,9 +1,9 @@
-import { faComment } from "@fortawesome/free-solid-svg-icons";
+import {faComment} from "@fortawesome/free-solid-svg-icons";
 import ActionButton from "./ActionButton"
 import getXPath from "get-xpath";
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import CommentListItemProps from "../interfaces/CommentListItemProps";
-import { addComment, addListItem } from "../store/store";
+import {addComment} from "../store/store";
 
 function AddCommentButton() {
     const dispatch = useDispatch();
@@ -37,30 +37,62 @@ function AddCommentButton() {
     }
 
     const addHover = (event: MouseEvent) => {
-        (event.target as HTMLElement).classList.add('ft-element-select');
+        const ele = (event.target as HTMLElement);
+        if (canSelect(ele)) {
+            ele.classList.add('ft-element-select');
+        } else {
+            console.log('nope');
+        }
     }
+
+    const canSelect = (ele: HTMLElement) => {
+        let parent = ele.parentNode;
+
+        while (parent) {
+            if ((parent as HTMLElement).id === 'root') {
+                return false;
+            }
+
+            parent = parent.parentNode;
+        }
+
+        return true
+    };
+
+    /**
+     * Remove the option to add comments when the Escape key is pressed.
+     */
+    document.addEventListener('keyup', function (e: KeyboardEvent) {
+        //If key is escape
+        if (e.key === 'Escape' || e.key === 'Esc') {
+            document.removeEventListener('click', setSelected);
+            document.removeEventListener('mouseover', addHover);
+            document.removeEventListener('mouseout', removeHover);
+            const selectClassEle = document.querySelector('.ft-element-select')
+            if (selectClassEle !== null) {
+                selectClassEle.classList.remove('ft-element-select');
+            }
+        }
+    });
 
     function addCommentComp(e: MouseEvent) {
         const listItem: CommentListItemProps = {
-            x: e.offsetX,
-            y: e.offsetY,
             path: getXPath(e.target as HTMLElement),
             user: 'user',
-            comment: `
-            Dit een comment die over meerdere regels gebruikt kan worden.
-            Wordt dit ook verwerkt door de Markdown component? 
-            `
+            comment: '',
+            number: 1
         }
 
-        //Add commment to the store
+        //Add comment to the store
         dispatch(addComment(listItem));
-        dispatch(addListItem(listItem))
+        // dispatch(addListItem(listItem))
 
 
     }
 
     return (
-        <ActionButton title="Add comment" tooltipId="action-button" tooltip="Adds a comment" faIcon={faComment} func={selectComment} />
+        <ActionButton title="Add comment" tooltipId="action-button" tooltip="Adds a comment" faIcon={faComment}
+                      func={selectComment}/>
     )
 }
 
